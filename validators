@@ -1,0 +1,11 @@
+function validarCliente(dados) {
+    const erros = [];
+    if (!dados.nome || dados.nome.trim() === '') erros.push('Nome é obrigatório');
+    if (dados.cpf && !/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(dados.cpf)) erros.push('CPF inválido');
+    if (dados.telefone && !/^\(?\d{2}\)?\s?\d{4,5}\-?\d{4}$/.test(dados.telefone)) erros.push('Telefone inválido');
+    if (dados.cep && !/^\d{5}\-?\d{3}$/.test(dados.cep)) erros.push('CEP inválido');
+    if (dados.data_nascimento && isNaN(Date.parse(dados.data_nascimento))) erros.push('Data de nascimento inválida');
+    return erros;
+}
+
+module.exports = { validarCliente };
